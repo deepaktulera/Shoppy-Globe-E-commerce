@@ -6,7 +6,7 @@ const ProductDetail = () => {
 
     const { id } = useParams();
     
-    const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState([]);
 
     useEffect(() => {
 
@@ -15,8 +15,6 @@ const ProductDetail = () => {
             const data = await getSingleProduct(id);
 
             setProduct(data);
-            console.log(data);
-            
         }
 
         fetchProduct();
@@ -29,7 +27,6 @@ const ProductDetail = () => {
 
     return (
         <div>
-
             <h1>{product.title}</h1>
 
             <img

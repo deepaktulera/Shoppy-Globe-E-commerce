@@ -27,7 +27,7 @@ const NotFound = () => {
     <div className="relative w-screen h-screen bg-white overflow-hidden">
       {/* Main content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-        <h1 className="text-6xl font-bold mb-4">Page Not Found</h1>
+        <h1 className="text-6xl font-bold mb-4 text-center">Page Not Found</h1>
         <p className="text-xl text-center px-4">
           Sorry, we couldn’t find the page you’re looking for.
         </p>

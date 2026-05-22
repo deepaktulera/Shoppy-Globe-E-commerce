@@ -8,13 +8,8 @@ export async function getProducts() {
 
 export async function getSingleProduct(id) {
 
-    const response = await fetch(
-        `https://dummyjson.com/products/${id}`
-    );
+    const response = await fetch(`https://dummyjson.com/products/${id}`);
 
     const data = await response.json();
-    console.log(data);
-    
-
     return data;
 }
