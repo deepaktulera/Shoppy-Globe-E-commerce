@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSingleProduct } from '../data/products';
+import { getSingleProduct } from '../utils/products';
 
 const ProductDetail = () => {
 

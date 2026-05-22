@@ -1,42 +1,23 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const NotFound = () => {
-  const overlayRef = useRef(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      const pos = `${x}px ${y}px`;
-
-      if (overlayRef.current) {
-        const gradient = `radial-gradient(circle 120px at ${pos}, transparent 0%, white 150px)`;
-        overlayRef.current.style.maskImage = gradient;
-        overlayRef.current.style.webkitMaskImage = gradient;
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
 
   return (
     <div className="relative w-screen h-screen bg-white overflow-hidden">
-      {/* Main content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-        <h1 className="text-6xl font-bold mb-4 text-center">Page Not Found</h1>
-        <p className="text-xl text-center px-4">
+        <h1 className="text-6xl md:text-8xl font-extrabold text-center md:py-6 bg-linear-to-r from-red-500 via-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse">
+          Page Not Found
+        </h1>
+        <p className="text-xl md:text-2xl text-center px-6 py-3 text-gray-400 leading-relaxed max-w-2xl">
           Sorry, we couldn’t find the page you’re looking for.
         </p>
-        <a
-          href="/"
-          className="mt-6 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded"
-        >
+
+        <Link
+          to="/"
+          className="mt-6 px-8 py-4 rounded-full font-semibold text-lg bg-linear-to-r from-green-400 to-emerald-600 hover:from-emerald-500 hover:to-green-500 text-white shadow-lg shadow-green-500/30 hover:scale-105 transition-all duration-300">
           Go Home
-        </a>
+        </Link>
       </div>
     </div>
   );

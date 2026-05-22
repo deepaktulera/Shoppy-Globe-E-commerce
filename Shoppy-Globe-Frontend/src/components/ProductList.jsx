@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductItem from './ProductItem';
-import { getProducts } from '../data/products';
+import { getProducts } from '../utils/products';
 
 const ProductList = () => {
 
@@ -9,16 +9,26 @@ const ProductList = () => {
     useEffect(() => {
 
         async function fetchProducts() {
+
             const data = await getProducts();
-            setProducts(data);
+
+            const uniqueProducts = [];
+
+            const categories = new Set();
+            data.forEach((item) => {
+                if (!categories.has(item.category)) {
+                    categories.add(item.category);
+                    uniqueProducts.push(item);
+                }
+            });
+            setProducts(uniqueProducts);
         }
-
         fetchProducts();
-
     }, []);
 
     return (
-        <div>
+        <div className='flex gap-4 justify-around overflow-x-auto p-2'>
+
             {products.map((item) => (
                 <ProductItem
                     key={item.id}
@@ -33,7 +43,9 @@ const ProductList = () => {
                     thumbnail={item.thumbnail}
                     warrenty={item.warrantyInformation}
                 />
+
             ))}
+
         </div>
     );
 }

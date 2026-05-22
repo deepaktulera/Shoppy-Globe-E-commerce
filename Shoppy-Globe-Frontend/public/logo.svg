@@ -1,0 +1,116 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <defs>
+
+    <!-- Main Gradient -->
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="512" y2="512">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+
+    <!-- Globe Gradient -->
+    <linearGradient id="globeGradient" x1="140" y1="120" x2="380" y2="380">
+      <stop stop-color="#4ADE80"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Orbit Gradient -->
+    <linearGradient id="orbitGradient" x1="90" y1="260" x2="430" y2="260">
+      <stop stop-color="#F97316"/>
+      <stop offset="1" stop-color="#FACC15"/>
+    </linearGradient>
+
+    <!-- Glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- Circle Background -->
+  <circle cx="256" cy="256" r="220" fill="url(#bgGradient)"/>
+
+  <!-- Globe -->
+  <g filter="url(#glow)">
+
+    <circle
+      cx="256"
+      cy="220"
+      r="120"
+      fill="url(#globeGradient)"
+    />
+
+    <!-- Globe Highlights -->
+    <path
+      d="M200 150C220 130 260 125 290 140"
+      stroke="white"
+      stroke-opacity="0.4"
+      stroke-width="14"
+      stroke-linecap="round"
+    />
+
+    <!-- Cart -->
+    <path
+      d="M175 195H325L310 275H205L175 195Z"
+      fill="white"
+      fill-opacity="0.95"
+    />
+
+    <!-- Cart Handle -->
+    <path
+      d="M155 175L175 195"
+      stroke="#22C55E"
+      stroke-width="16"
+      stroke-linecap="round"
+    />
+
+    <!-- Cart Bars -->
+    <line x1="220" y1="200" x2="220" y2="270"
+      stroke="#CBD5E1"
+      stroke-width="10"/>
+
+    <line x1="260" y1="200" x2="260" y2="270"
+      stroke="#CBD5E1"
+      stroke-width="10"/>
+
+    <!-- Wheels -->
+    <circle cx="220" cy="310" r="22" fill="white"/>
+    <circle cx="295" cy="310" r="22" fill="white"/>
+
+    <circle cx="220" cy="310" r="10" fill="#CBD5E1"/>
+    <circle cx="295" cy="310" r="10" fill="#CBD5E1"/>
+
+  </g>
+
+  <!-- Orbit Ring -->
+  <ellipse
+    cx="256"
+    cy="240"
+    rx="190"
+    ry="55"
+    stroke="url(#orbitGradient)"
+    stroke-width="20"
+    fill="none"
+    transform="rotate(-10 256 240)"
+  />
+
+  <!-- SG Text -->
+  <text
+    x="256"
+    y="430"
+    text-anchor="middle"
+    fill="white"
+    font-size="58"
+    font-family="Poppins, Arial"
+    font-weight="700"
+    letter-spacing="-2"
+  >
+    SG
+  </text>
+
+</svg>
