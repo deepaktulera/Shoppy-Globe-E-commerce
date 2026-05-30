@@ -31,7 +31,7 @@ const Carousel = () => {
     }
     return (
         <div className='relative rounded-4xl p-4'>
-            <img src={images[current]} alt="carousel" className='h-52 sm:h-96 w-full object-cover rounded-4xl shadow-2xl' />
+            <img src={images[current]} alt="carousel" className='h-52 sm:h-96 w-full object-cover rounded-4xl shadow-2xl brightness-60' />
             <button
                 className='absolute top-[50%] translate-y-[-50%] left-[10%] sm:left-[5%] bg-gray-400 rounded-2xl p-2'
                 onClick={prevSlide}><ChevronLeft /></button>

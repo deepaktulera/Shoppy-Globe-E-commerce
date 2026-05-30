@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from '../components/Header';
 import ProductList from '../components/ProductList';
 import Carousel from '../components/Carousel';
 
@@ -8,7 +7,6 @@ const HomePage = () => {
 
   return (
     <div className='w-full flex flex-col justify-evenly gap-5'>
-      <Header />
       <Carousel />
       <ProductList />
     </div>

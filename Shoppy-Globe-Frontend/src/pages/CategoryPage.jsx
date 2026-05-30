@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import { getProducts } from '../utils/products';
 
@@ -13,8 +12,8 @@ const CategoryPage = () => {
     }, []);
   return (
     <div>
-        <Header />
         <div>
+            <Link to={"/category/beauty"} >Beauty</Link>
             <Link to={"/category/beauty"} >Beauty</Link>
         </div>
     </div>
