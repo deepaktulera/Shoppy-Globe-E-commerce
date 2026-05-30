@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <div className='p-3 w-screen h-screen'>
+    <div className='p-5 w-screen h-screen'>
       <Header />
       <AppRoutes />
       <Footer />
