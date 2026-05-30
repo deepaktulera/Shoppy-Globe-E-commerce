@@ -32,6 +32,8 @@ const Header = () => {
                     : <Menu size={20} strokeWidth={1.5} />
                 }
             </button>
+            <Link to={"/cart"}><ShoppingCart size={20} /></Link>
+                <Link to={"/user"}><User size={20} /></Link>
 
             {isOpen && (
                 <div className="absolute top-12 right-2 bg-white shadow-xl rounded-xl p-4 flex flex-col gap-3 w-40 z-50">
@@ -40,9 +42,6 @@ const Header = () => {
                     </Link>
                     <Link to="/category" onClick={() => setIsOpen(false)}>
                         Category
-                    </Link>
-                    <Link to="/category" onClick={() => setIsOpen(false)}>
-                        Cart
                     </Link>
                 </div>
             )
