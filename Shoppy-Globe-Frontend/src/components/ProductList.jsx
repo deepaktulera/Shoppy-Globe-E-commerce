@@ -7,6 +7,7 @@ const ProductList = () => {
 
   const uniqueProducts = [];
   const categories = new Set();
+  
 
   products.forEach((item) => {
     if (!categories.has(item.category)) {
