@@ -55,6 +55,8 @@ if (loading) {
           id={item.id}
           title={item.title}
           thumbnail={item.thumbnail}
+          price={item.price}
+          description={item.description}
         />
       ))}
     </div>
