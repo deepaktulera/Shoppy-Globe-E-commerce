@@ -1,7 +1,8 @@
-import React from "react";
-import ProductList from "../components/ProductList";
-import Carousel from "../components/Carousel";
+import React, { lazy, Suspense } from "react";
 import useProducts from "../utils/useProducts";
+
+const ProductList = lazy(() => import("../components/ProductList"));
+const Carousel = lazy(() => import("../components/Carousel"));
 
 const HomePage = () => {
   const { loading, error } = useProducts();
@@ -22,20 +23,19 @@ const HomePage = () => {
           Oops! Something went wrong
         </h1>
         <p className="text-gray-600">{error}</p>
-        <button
-          onClick={() => window.location.reload()}
-          className="px-4 py-2 bg-blue-500 text-white rounded-full"
-        >
-          Retry
-        </button>
       </div>
     );
   }
 
   return (
     <div className="w-full flex flex-col justify-evenly gap-5">
-      <Carousel />
-      <ProductList />
+      <Suspense fallback={<h1>Loading Carousel...</h1>}>
+        <Carousel />
+      </Suspense>
+
+      <Suspense fallback={<h1>Loading Products...</h1>}>
+        <ProductList />
+      </Suspense>
     </div>
   );
 };
