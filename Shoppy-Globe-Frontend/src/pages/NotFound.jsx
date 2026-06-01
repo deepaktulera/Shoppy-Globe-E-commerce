@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const NotFound = () => {
 
   return (
-    <div className="relative w-screen h-screen bg-white overflow-hidden">
+    <div className="relative h-screen bg-white overflow-hidden">
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
         <h1 className="text-6xl md:text-8xl font-extrabold text-center md:py-6 bg-linear-to-r from-red-500 via-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse">
           Page Not Found
