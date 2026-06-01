@@ -25,7 +25,7 @@ if (loading) {
           className="shadow-2xl sm:shadow-none shrink-0 rounded-4xl p-3 w-60 md:w-auto box-border animate-pulse"
         >
           {/* IMAGE */}
-          <div className="w-full h-[160px] bg-gray-200 rounded-xl mb-3"></div>
+          <div className="w-full h-40 bg-gray-200 rounded-xl mb-3"></div>
 
           {/* TITLE */}
           <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>

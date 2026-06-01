@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, ShoppingCart, User, X } from "lucide-react";
+import { Menu, ShoppingCart, User, X ,Search} from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../redux/slices/searchSlice";
 
@@ -11,12 +11,11 @@ const Header = () => {
   const navigate = useNavigate();
 
   const search = useSelector((store) => store.search);
+  const [searchText, setSearchText] = useState("");
 
   const handleSearch = (e) => {
     const value = e.target.value;
-
     dispatch(setSearch(value));
-
     if (value.trim()) {
       navigate("/category");
     }
@@ -30,14 +29,30 @@ const Header = () => {
         className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
       />
 
-      <div className="flex-1 mx-2">
+      <div className="flex w-[80%] gap-2 mx-2">
         <input
-          value={search}
-          onChange={handleSearch}
+        onKeyDown={(e)=>{
+          if(e.code == "Enter"){
+            dispatch(setSearch(searchText));
+            navigate("/category");
+            setSearchText("")
+          }
+        }}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           className="w-full py-2 px-4 outline-none border border-white/20 bg-white/10 text-white placeholder:text-gray-300 rounded-full"
           type="text"
           placeholder="Search products..."
         />
+        <button
+        onClick={() => {
+            dispatch(setSearch(searchText));
+            navigate("/category");
+            setSearchText("")
+          }}
+        >
+          < Search size={20} />
+        </button>
       </div>
 
       <div className="hidden sm:flex items-center gap-4">
