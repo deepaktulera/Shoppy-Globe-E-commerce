@@ -23,11 +23,13 @@ const Header = () => {
 
   return (
     <nav className="sticky top-2 mb-2 z-50 w-full flex items-center justify-between px-3 py-2 backdrop-blur-xl bg-black/50 text-white rounded-full shadow-2xl">
+      <Link to={'/'}>
       <img
         src="/logo.svg"
         alt="Logo"
         className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
-      />
+        />
+      </Link>
 
       <div className="flex w-[80%] gap-2 mx-2">
         <input

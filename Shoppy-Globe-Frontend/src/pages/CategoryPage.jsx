@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import useProducts from "../utils/useProducts";
-import CategoryProducts from "../components/CategoryList";
+import { Link } from "react-router-dom";
+
+const CategoryProducts = lazy(() => import("../components/CategoryList"));
 
 const CategoryPage = () => {
   const { products, loading, error } = useProducts();
 
   const search = useSelector((state) => state.search);
-
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const filterCategories = [
@@ -15,7 +16,8 @@ const CategoryPage = () => {
   ];
 
   const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === "" || product.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === "" || product.category === selectedCategory;
 
     const matchesSearch = product.title
       .toLowerCase()
@@ -25,11 +27,11 @@ const CategoryPage = () => {
   });
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <div className="text-center text-xl mt-10">Loading Products...</div>;
   }
 
   if (error) {
-    return <h1>{error}</h1>;
+    return <h1 className="text-center text-red-500 text-xl">{error}</h1>;
   }
 
   return (
@@ -58,17 +60,32 @@ const CategoryPage = () => {
           </button>
         ))}
       </div>
+
       {filteredProducts.length === 0 ? (
-        <div className="h-screen text-center mt-10">
-          <h1 className="text-3xl font-bold text-red-500">
-            Oops! Product Not Found
-          </h1>
-          <p className="text-gray-500 mt-2">
-            Try to search a different product.
-          </p>
+        <div className="h-screen flex flex-col items-center justify-center gap-4 text-center mt-10">
+          <div>
+            <h1 className="text-3xl font-bold text-red-500">
+              Oops! Product Not Found
+            </h1>
+            <p className="text-gray-500 mt-2">
+              Try searching for a different product.
+            </p>
+          </div>
+          <Link
+            to="/"
+            className="py-1 px-3 w-fit bg-black text-white rounded-full hover:opacity-80"
+          >
+            Go to Home
+          </Link>
         </div>
       ) : (
-        <CategoryProducts products={filteredProducts} />
+        <Suspense
+          fallback={
+            <div className="text-center text-xl">Loading Products...</div>
+          }
+        >
+          <CategoryProducts products={filteredProducts} />
+        </Suspense>
       )}
     </div>
   );
