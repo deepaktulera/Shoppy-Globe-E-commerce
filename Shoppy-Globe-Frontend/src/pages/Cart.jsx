@@ -1,7 +1,8 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CartItem from "../components/CartItem";
+
+const CartItem = lazy(() => import('../components/CartItem'))
 
 const Cart = () => {
   const collection = useSelector((state) => state.cart.items);
@@ -33,7 +34,9 @@ const Cart = () => {
       {/* Cart Items */}
       <div className="flex flex-col gap-4">
         {collection.map((item) => (
+          <Suspense fallback={<h1>Loading Carousel...</h1>}>
           <CartItem key={item.id} data={item} />
+          </Suspense>
         ))}
       </div>
 

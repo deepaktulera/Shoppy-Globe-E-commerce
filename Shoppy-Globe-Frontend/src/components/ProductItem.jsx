@@ -15,7 +15,7 @@ const ProductItem = ({ id, title , category , price , thumbnail , description}) 
   
 
   return (
-    <div className="shadow-2xl sm:shadow-none hover:shadow-2xl hover:scale-90 hover:shadow-purple-400 transition-all duration-300 shrink-0 rounded-4xl p-3 w-60 md:w-auto box-border">
+    <div className="shadow-2xl sm:shadow-none hover:shadow-2xl sm:hover:scale-90 sm:hover:shadow-purple-400 sm:transition-all sm:duration-300 shrink-0 rounded-4xl p-3 w-60 md:w-auto box-border">
       <Link to={`/product_detail/${id}`}>
         <div>
           <img src={thumbnail} alt={title} className="brightness-90" />

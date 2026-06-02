@@ -1,22 +1,23 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
-import NotFound from '../pages/NotFound';
-import ProductDetail from '../pages/ProductDetail';
-import CategoryPage from '../pages/CategoryPage';
-import Cart from '../pages/Cart';
+import React, { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+
+const CategoryPage = lazy(() => import('../pages/CategoryPage'))
+const HomePage = lazy(() => import ('../pages/HomePage'))
+const Cart = lazy(() => import ('../pages/Cart'))
+const ProductDetail = lazy(() => import('../pages/ProductDetail'))
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const AppRoutes = () => {
   return (
     <Routes>
-        <Route path='/' element={<HomePage/>}></Route>
-        <Route path='/category' element={<CategoryPage />}></Route>
-        <Route path='/category/:id' element={<CategoryPage />}></Route>
-        <Route path='/product_detail/:id' element={<ProductDetail />}></Route>
-        <Route path='/cart' element={<Cart />}></Route>
-        <Route path='*' element={<NotFound />}></Route>
+      <Route path="/" element={<Suspense fallback={<div>Loading...</div>}><HomePage /></Suspense>}></Route>
+      <Route path="/category" element={<Suspense fallback={<div>Loading...</div>}><CategoryPage /></Suspense>}></Route>
+      <Route path="/category/:id" element={<Suspense fallback={<div>Loading...</div>}><CategoryPage /></Suspense>}></Route>
+      <Route path="/product_detail/:id" element={<Suspense fallback={<div>Loading...</div>}><ProductDetail /></Suspense>} />
+      <Route path="/cart" element={<Suspense fallback={<div>Loading...</div>}><Cart /></Suspense> } />
+      <Route path="*" element={ <Suspense fallback={<div>Loading...</div>}><NotFound /></Suspense>}/>
     </Routes>
   );
-}
+};
 
 export default AppRoutes;
