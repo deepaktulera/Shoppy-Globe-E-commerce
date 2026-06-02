@@ -50,9 +50,9 @@ const Cart = () => {
           </h2>
         </div>
 
-        <button className="bg-gray-400 text-center m-auto p-2 rounded-3xl w-fit active:scale-90">
-          CheckOut
-        </button>
+        <Link to={'/checkout'} className="bg-gray-400 text-center m-auto p-2 rounded-3xl w-fit active:scale-90">
+        Checkout
+        </Link>
       </div>
     </div>
   );
