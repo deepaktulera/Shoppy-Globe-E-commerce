@@ -67,7 +67,7 @@ npm run dev
 
 ## Author
 
-Your Name
+Deepak Singh
 
 ## Repository
 
