@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast, Zoom } from "react-toastify";
 
 const initialState = {
   items: [],
@@ -63,15 +64,46 @@ const cartSlice = createSlice({
         saveToLocalStorage(state.items);
       }
     },
-
     clearCart: (state) => {
       state.items = [];
       saveToLocalStorage([]);
     },
+    addToast: () => {
+      toast.success("✅ Added to Cart Successfully!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        transition: Zoom,
+      });
+    },
+
+    removeToast: () => {
+      toast.error("🗑️ Removed from Cart!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        transition: Zoom,
+      });
+    },
   },
 });
 
-export const { addItem, removeItem, increaseQty, decreaseQty, clearCart } =
-  cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  increaseQty,
+  decreaseQty,
+  clearCart,
+  addToast,
+  removeToast,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

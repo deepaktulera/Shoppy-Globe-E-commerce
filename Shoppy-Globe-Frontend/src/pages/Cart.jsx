@@ -38,8 +38,8 @@ const Cart = () => {
       {/* Cart Items */}
       <div className="flex flex-col gap-4">
         {collection.map((item) => (
-          <Suspense fallback={<h1>Loading Carousel...</h1>}>
-            <CartItem key={item.id} data={item} />
+          <Suspense key={item.id} fallback={<h1>Loading Carousel...</h1>}>
+            <CartItem data={item} />
           </Suspense>
         ))}
       </div>

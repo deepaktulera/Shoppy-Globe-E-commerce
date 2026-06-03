@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSingleProduct } from "../utils/products";
-import { addItem } from "../redux/slices/cartSlice";
+import { addItem , addToast} from "../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
@@ -22,6 +22,7 @@ const ProductDetail = () => {
   // add current product into cart
   function handleAddItem() {
     dispatch(addItem(product));
+    dispatch(addToast())
   }
 
   // add item and move user to cart page
