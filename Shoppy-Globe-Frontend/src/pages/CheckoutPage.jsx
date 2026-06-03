@@ -4,9 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const CheckoutPage = () => {
+  // for page navigation
   const navigate = useNavigate();
+
+  // for redux actions
   const dispatch = useDispatch();
 
+  // storing user details from checkout form
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +19,7 @@ const CheckoutPage = () => {
     city: "",
   });
 
+  // update form data when user type
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,6 +27,7 @@ const CheckoutPage = () => {
     });
   };
 
+  // place order and clear cart
   const handlePlaceOrder = (e) => {
     e.preventDefault();
 
@@ -36,8 +42,10 @@ const CheckoutPage = () => {
 
   return (
     <div className="min-h-screen p-6">
+      {/* checkout heading */}
       <h1 className="text-3xl font-bold mb-6">Checkout</h1>
 
+      {/* user details form */}
       <form
         onSubmit={handlePlaceOrder}
         className="flex flex-col gap-4 max-w-md"
@@ -92,10 +100,8 @@ const CheckoutPage = () => {
           required
         />
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded"
-        >
+        {/* submit order button */}
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
           Place Order
         </button>
       </form>

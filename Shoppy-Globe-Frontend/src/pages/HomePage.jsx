@@ -1,12 +1,15 @@
 import React, { lazy, Suspense } from "react";
 import useProducts from "../utils/useProducts";
 
+// loading component only when needed
 const ProductList = lazy(() => import("../components/ProductList"));
 const Carousel = lazy(() => import("../components/Carousel"));
 
 const HomePage = () => {
+  // getting loading and error state
   const { loading, error } = useProducts();
 
+  // show loader untill data comes
   if (loading) {
     return (
       <div className="w-full min-h-screen flex flex-col items-center justify-center gap-4">
@@ -16,6 +19,7 @@ const HomePage = () => {
     );
   }
 
+  // if any error happen show this
   if (error) {
     return (
       <div className="w-full min-h-screen flex flex-col items-center justify-center gap-3">
@@ -29,10 +33,12 @@ const HomePage = () => {
 
   return (
     <div className="w-full flex flex-col justify-evenly gap-5">
+      {/* carousel section */}
       <Suspense fallback={<h1>Loading Carousel...</h1>}>
         <Carousel />
       </Suspense>
 
+      {/* all products are showing here */}
       <Suspense fallback={<h1>Loading Products...</h1>}>
         <ProductList />
       </Suspense>

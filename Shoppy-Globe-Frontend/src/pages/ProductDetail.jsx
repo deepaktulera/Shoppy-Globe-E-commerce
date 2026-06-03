@@ -5,24 +5,32 @@ import { addItem } from "../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
+  // getting product id from url
   const { id } = useParams();
 
+  // storing single product data
   const [product, setProduct] = useState(null);
+
+  // loading and error states
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // redux and navigation hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // add current product into cart
   function handleAddItem() {
     dispatch(addItem(product));
   }
 
+  // add item and move user to cart page
   function handleBuyNow() {
     dispatch(addItem(product));
     navigate("/cart"); // Change if your checkout route is different
   }
 
+  // fetch product details when page load
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -38,10 +46,12 @@ const ProductDetail = () => {
     fetchProduct();
   }, [id]);
 
+  // show loader untill product comes
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
+  // show error if product not found
   if (error) {
     return <h1 className="text-center text-red-500">{error}</h1>;
   }
@@ -49,12 +59,13 @@ const ProductDetail = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <div className="w-[80%] h-full flex flex-col lg:flex-row justify-evenly gap-4 items-center">
+        {/* product image */}
         <img
           src={product.thumbnail}
           alt={product.title}
           className="md:min-w-120 rounded-2xl"
         />
-
+        {/* product details */}
         <div className="h-full flex flex-col justify-center p-2 gap-4">
           <h1 className="text-xl font-semibold text-center sm:text-4xl">
             {product.title}
@@ -76,6 +87,7 @@ const ProductDetail = () => {
             <strong>Price:</strong> ₹{product.price}
           </h3>
 
+          {/* add and buy buttons */}
           <div className="w-full flex justify-center gap-4">
             <button
               onClick={handleAddItem}

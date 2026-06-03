@@ -2,16 +2,19 @@ import React, { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const CartItem = lazy(() => import('../components/CartItem'))
+const CartItem = lazy(() => import("../components/CartItem"));
 
 const Cart = () => {
+  // getting cart items from redux
   const collection = useSelector((state) => state.cart.items);
 
+  // calculate total cart price
   const totalPrice = collection.reduce(
     (acc, item) => acc + (item.price || 0) * (item.quantity || 1),
-    0
+    0,
   );
 
+  // show empty cart page
   if (collection.length === 0) {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4">
@@ -29,13 +32,14 @@ const Cart = () => {
 
   return (
     <div className="p-4 max-w-6xl mx-auto">
+      {/* all cart products */}
       <h1 className="text-2xl font-bold mb-4">🛒 Your Cart</h1>
 
       {/* Cart Items */}
       <div className="flex flex-col gap-4">
         {collection.map((item) => (
           <Suspense fallback={<h1>Loading Carousel...</h1>}>
-          <CartItem key={item.id} data={item} />
+            <CartItem key={item.id} data={item} />
           </Suspense>
         ))}
       </div>
@@ -45,13 +49,16 @@ const Cart = () => {
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">Total</h2>
 
-          <h2 className="text-xl font-bold">
-            ₹ {Math.round(totalPrice)}
-          </h2>
+          {/* total price section */}
+          <h2 className="text-xl font-bold">₹ {Math.round(totalPrice)}</h2>
         </div>
 
-        <Link to={'/checkout'} className="bg-gray-400 text-center m-auto p-2 rounded-3xl w-fit active:scale-90">
-        Checkout
+        {/* go to checkout page */}
+        <Link
+          to={"/checkout"}
+          className="bg-gray-400 text-center m-auto p-2 rounded-3xl w-fit active:scale-90"
+        >
+          Checkout
         </Link>
       </div>
     </div>
