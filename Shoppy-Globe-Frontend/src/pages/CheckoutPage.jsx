@@ -41,14 +41,14 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen px-6 gap-6 flex flex-col justify-center items-center">
       {/* checkout heading */}
-      <h1 className="text-3xl font-bold mb-6">Checkout</h1>
+      <h1 className="text-3xl font-bold">Checkout</h1>
 
       {/* user details form */}
       <form
         onSubmit={handlePlaceOrder}
-        className="flex flex-col gap-4 max-w-md"
+        className="flex flex-col gap-6 w-full md:w-80%] lg:w-[60%]"
       >
         <input
           type="text"
