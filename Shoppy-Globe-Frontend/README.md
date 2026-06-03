@@ -82,14 +82,6 @@ src/
 * Checkout Page
 * Not Found Page
 
-## Future Improvements
-
-* User Authentication
-* Wishlist Feature
-* Order History
-* Payment Gateway Integration
-* Product Reviews and Ratings
-
 ## Author
 
 Developed by Deepak Singh
