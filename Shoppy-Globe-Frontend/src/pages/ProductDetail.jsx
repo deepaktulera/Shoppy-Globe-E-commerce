@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSingleProduct } from "../utils/products";
+import { addItem } from "../redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -8,6 +10,18 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function handleAddItem() {
+    dispatch(addItem(product));
+  }
+
+  function handleBuyNow() {
+    dispatch(addItem(product));
+    navigate("/cart"); // Change if your checkout route is different
+  }
 
   useEffect(() => {
     async function fetchProduct() {
@@ -25,31 +39,7 @@ const ProductDetail = () => {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="w-full h-full flex flex-col justify-center items-center">
-        <div className="w-[80%] h-[80%] flex flex-col md:flex-row justify-evenly gap-4 items-center overflow-y-auto p-4">
-          <div className="w-75 md:w-125 h-75 md:h-125 bg-gray-200 rounded-xl"></div>
-          <div className="flex-1 flex flex-col justify-center gap-4 w-full">
-            <div className="h-10 bg-gray-200 px-2 rounded w-3/4 mx-auto"></div>
-
-            <div className="h-5 bg-gray-200 rounded w-full"></div>
-            <div className="h-5 bg-gray-200 rounded w-11/12"></div>
-            <div className="h-5 bg-gray-200 rounded w-10/12"></div>
-
-            <div className="h-5 bg-gray-200 rounded w-1/2"></div>
-
-            <div className="h-5 bg-gray-200 rounded w-1/3"></div>
-
-            <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-
-            <div className="flex justify-center gap-4 mt-4">
-              <div className="w-24 h-10 bg-gray-200 rounded-full"></div>
-              <div className="w-24 h-10 bg-gray-200 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <h1>Loading...</h1>;
   }
 
   if (error) {
@@ -58,11 +48,11 @@ const ProductDetail = () => {
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
-      <div className="w-[80%] h-full flex flex-col lg:flex-row justify-evenly gap-4 items-center ">
+      <div className="w-[80%] h-full flex flex-col lg:flex-row justify-evenly gap-4 items-center">
         <img
           src={product.thumbnail}
           alt={product.title}
-          className="md:min-w-120 rounded-2xl hover:shadow-2xl hover:shadow-emerald-300 transition-all duration-1000"
+          className="md:min-w-120 rounded-2xl"
         />
 
         <div className="h-full flex flex-col justify-center p-2 gap-4">
@@ -70,26 +60,34 @@ const ProductDetail = () => {
             {product.title}
           </h1>
 
-          <p className="text-lg font-light">
-            <strong>Description</strong> : {product.description}
+          <p>
+            <strong>Description:</strong> {product.description}
           </p>
 
-          <h3 className="text-lg font-light">
-            <strong>Category</strong> : {product.category}
+          <h3>
+            <strong>Category:</strong> {product.category}
           </h3>
 
-          <h3 className="text-lg font-light">
-            <strong>Rating</strong> : {product.rating}
+          <h3>
+            <strong>Rating:</strong> {product.rating}
           </h3>
 
-          <h3 className="text-lg font-light">
-            <strong>Price</strong> : ₹ {product.price}
+          <h3>
+            <strong>Price:</strong> ₹{product.price}
           </h3>
+
           <div className="w-full flex justify-center gap-4">
-            <button className="px-3 py-1 rounded-full shadow-2xl bg-gray-300">
+            <button
+              onClick={handleAddItem}
+              className="px-3 py-1 rounded-full shadow-2xl bg-gray-300 active:scale-80"
+            >
               Add
             </button>
-            <button className="px-3 py-1 rounded-full shadow-2xl bg-gray-300">
+
+            <button
+              onClick={handleBuyNow}
+              className="px-3 py-1 rounded-full shadow-2xl bg-gray-300 active:scale-80"
+            >
               Buy
             </button>
           </div>
