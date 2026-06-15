@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { StrictMode } from "react";
 
 const productSchema = mongoose.Schema(
   {
@@ -7,7 +6,7 @@ const productSchema = mongoose.Schema(
     price: { type: Number, required: true  , min: 0,},
     description: { type: String, required: true },
     stock: { type: Number, required: true , min: 0,},
-    image: { type: String, required: true },
+    image: { type: String},
   },
   {
     timestamps: true,

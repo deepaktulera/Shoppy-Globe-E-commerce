@@ -1,12 +1,18 @@
-import express from 'express';
-import connectDatabase from './config/database.js';
+import express from "express";
 import dotenv from "dotenv";
+import connectDatabase from "./config/database.js";
+import productRoutes from "./routes/productRoute.js";
 
-const app = new express();
 dotenv.config();
 
-connectDatabase()
+const app = express();
 
-app.listen('5000' , (req , res) =>{
+connectDatabase();
+
+app.use(express.json());
+
+app.use("/", productRoutes);
+
+app.listen(5000, () => {
     console.log("Server Started");
-})
+});
