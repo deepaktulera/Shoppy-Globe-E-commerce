@@ -49,7 +49,7 @@ export const loginUser = async (req, res) => {
 
     if (!email || !password) {
       return res.status(400).json({
-        message: "Email and password are required",
+        message: "Email and Password are required",
       });
     }
 
@@ -74,7 +74,7 @@ export const loginUser = async (req, res) => {
         id: user._id,
         email: user.email,
       },
-      process.env.SECURITY_KEY,
+      "Hello_World",
       {
         expiresIn: "7d",
       },

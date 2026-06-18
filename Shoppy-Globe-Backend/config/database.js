@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDatabase = async () => {
   try {
-    const connectDb = await mongoose.connect(process.env.MONGO_URL);
+    const connectDb = await mongoose.connect("mongodb://localhost:27017/Shoppy-globe");
 
     console.log(
       "MongoDB Connected"
