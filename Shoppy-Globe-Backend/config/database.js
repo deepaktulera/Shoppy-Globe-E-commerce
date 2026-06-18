@@ -1,14 +1,20 @@
 import mongoose from "mongoose";
 
+// function for connect mongo db database
 const connectDatabase = async () => {
   try {
-    const connectDb = await mongoose.connect("mongodb://localhost:27017/Shoppy-globe");
-
-    console.log(
-      "MongoDB Connected"
+    // connect database with local mongodb
+    const connectDb = await mongoose.connect(
+      "mongodb://localhost:27017/Shoppy-globe",
     );
+
+    // database connected message
+    console.log("MongoDB Connected");
   } catch (error) {
+    // if database not connect then show error
     console.error(`MongoDB Connection Error: ${error.message}`);
+
+    // stop server if db connection fail
     process.exit(1);
   }
 };

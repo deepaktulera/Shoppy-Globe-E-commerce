@@ -1,19 +1,52 @@
 import mongoose from "mongoose";
 
+// schema for product data
 const productSchema = mongoose.Schema(
   {
-    title: { type: String, required: true },
-    price: { type: Number, required: true  , min: 0,},
-    description: { type: String, required: true },
-    stock: { type: Number, required: true , min: 0,},
-    category: { type: String, required: true },
-    image: { type: String},
+    // product title
+    title: {
+      type: String,
+      required: true,
+    },
+
+    // product price
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+
+    // short details about product
+    description: {
+      type: String,
+      required: true,
+    },
+
+    // available stock
+    stock: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+
+    // product category
+    category: {
+      type: String,
+      required: true,
+    },
+
+    // image url of product
+    image: {
+      type: String,
+    },
   },
   {
+    // create timestamps automaticly
     timestamps: true,
   },
 );
 
-const Product = mongoose.model('Product' , productSchema);
+// create product model
+const Product = mongoose.model("Product", productSchema);
 
 export default Product;

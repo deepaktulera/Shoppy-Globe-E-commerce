@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from 'cors'
+import cors from "cors";
 
 import connectDatabase from "./config/database.js";
 
@@ -13,48 +13,50 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Database Connection
+// connect mongodb database
 connectDatabase();
 
-// Middleware
+// middlewares
 app.use(cors());
 app.use(express.json());
 
-// Health Check Route
+// just checking server is running or not
 app.get("/", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "Shoppy Globe API is running"
-    });
+  res.status(200).json({
+    success: true,
+    message: "Shoppy Globe API is running",
+  });
 });
 
-// Routes
+// all routes
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/auth", authRoutes);
+
+// test route
 app.get("/test", (req, res) => {
-    res.send("Server working");
+  res.send("Server working");
 });
 
-// 404 Handler
+// if route not found
 app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: "Route not found"
-    });
+  res.status(404).json({
+    success: false,
+    message: "Route not found",
+  });
 });
 
-// Global Error Handler
+// handle server errors
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+  console.error(err.stack);
 
-    res.status(500).json({
-        success: false,
-        message: "Internal Server Error"
-    });
+  res.status(500).json({
+    success: false,
+    message: "Internal Server Error",
+  });
 });
 
-// Server
+// start server
 app.listen(PORT, () => {
-    console.log("🚀 Server running");
+  console.log("Server running");
 });
