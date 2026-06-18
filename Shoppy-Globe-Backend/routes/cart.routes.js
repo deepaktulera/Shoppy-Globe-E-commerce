@@ -4,9 +4,9 @@ import { protect } from "../middleware/protect.middleware.js";
 
 const router = express.Router();
 
-router.get("/cart" , protect , showCart)
-router.post("/cart", protect , addCartProduct);
-router.put("/cart/:id" , protect , updateCartItem);
-router.delete("/cart/:id" , protect , deleteCartItem);
+router.get("/", protect, showCart);
+router.post("/", protect, addCartProduct);
+router.put("/:id", protect, updateCartItem);
+router.delete("/:id", protect, deleteCartItem);
 
 export default router;

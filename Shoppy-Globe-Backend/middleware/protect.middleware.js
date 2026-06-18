@@ -1,28 +1,44 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-export function protect (req, res, next) {
-    const authHeader = req.headers["authorization"];
+export function protect(req, res, next) {
+    try {
+        const authHeader = req.headers.authorization;
 
-    if (!authHeader) {
+        if (!authHeader) {
+            return res.status(401).json({
+                message: "Authorization token missing"
+            });
+        }
+
+        // Supports both:
+        // Authorization: Bearer <token>
+        // Authorization: JWT <token>
+
+        const token = authHeader.startsWith("Bearer ")
+            ? authHeader.split(" ")[1]
+            : authHeader.startsWith("JWT ")
+            ? authHeader.split(" ")[1]
+            : null;
+
+        if (!token) {
+            return res.status(401).json({
+                message: "Invalid authorization format"
+            });
+        }
+
+        const decoded = jwt.verify(
+            token,
+            process.env.SECURITY_KEY
+        );
+
+        req.user = decoded;
+
+        next();
+    } catch (err) {
+        console.error("JWT Error:", err.message);
+
         return res.status(401).json({
-            message: "Token required"
+            message: err.message
         });
     }
-
-    const token = authHeader.split(" ")[1];
-
-    jwt.verify(
-        token,
-        process.env.SECURITY_KEY,
-        (err, user) => {
-            if (err) {
-                return res.status(403).json({
-                    message: "Invalid token"
-                });
-            }
-
-            req.user = user;
-            next();
-        }
-    );
 }
