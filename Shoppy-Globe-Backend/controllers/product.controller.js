@@ -55,30 +55,51 @@ export const getProductById = async (req, res) => {
 // CREATE PRODUCT
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, description, stock, image } = req.body;
+    // Multiple products
+    if (Array.isArray(req.body)) {
+      const products = await Product.insertMany(req.body);
 
-    if (!name || !price) {
+      return res.status(201).json({
+        success: true,
+        message: `${products.length} products created successfully`,
+        products,
+      });
+    }
+
+    // Single product
+    const {
+      title,
+      price,
+      description,
+      stock,
+      category,
+      image,
+    } = req.body;
+
+    if (!title || price == null || !category) {
       return res.status(400).json({
         success: false,
-        message: "Name and Price are required",
+        message: "Title, Price and Category are required",
       });
     }
 
     const product = await Product.create({
-      name,
+      title,
       price,
       description,
       stock,
+      category,
       image,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Product created successfully",
       product,
     });
+
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });

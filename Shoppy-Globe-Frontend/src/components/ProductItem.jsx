@@ -17,6 +17,7 @@ const ProductItem = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   // Add product to cart
   function handleAddItem() {
     dispatch(
@@ -55,7 +56,7 @@ const ProductItem = ({
       {/* Product details page */}
       <Link to={`/product_detail/${id}`}>
         <div>
-          <img src={thumbnail} alt={title} className="brightness-90" />
+          <img src={thumbnail} alt={title} className="brightness-90 w-52 h-52 object-cover" />
           <h1 className="text-center">{title}</h1>
         </div>
       </Link>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useOptimistic } from "react";
 import ProductItem from "./ProductItem";
 import useProducts from "../utils/useProducts";
 
@@ -58,10 +58,10 @@ const ProductList = () => {
       {/* Render category products */}
       {uniqueProducts.map((item) => (
         <ProductItem
-          key={item.id}
-          id={item.id}
+          key={item._id}
+          id={item._id}
           title={item.title}
-          thumbnail={item.thumbnail}
+          thumbnail={item.image}
           price={item.price}
           description={item.description}
         />

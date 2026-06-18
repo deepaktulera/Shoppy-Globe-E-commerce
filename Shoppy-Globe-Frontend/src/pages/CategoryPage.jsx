@@ -24,7 +24,7 @@ const CategoryPage = () => {
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
       selectedCategory === "" || product.category === selectedCategory;
-
+      
     const matchesSearch = product.title
       .toLowerCase()
       .includes(search.toLowerCase());

@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from 'cors'
 
 import connectDatabase from "./config/database.js";
 
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 5000;
 connectDatabase();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Health Check Route

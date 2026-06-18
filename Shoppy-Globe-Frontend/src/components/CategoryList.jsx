@@ -8,10 +8,10 @@ const CategoryProducts = ({ products }) => {
       {/* Render all category products */}
       {products.map((item) => (
         <ProductItem
-          key={item.id}
-          id={item.id}
+          key={item._id}
+          id={item._id}
           title={item.title}
-          thumbnail={item.thumbnail}
+          thumbnail={item.image}
           price={item.price}
           description={item.description}
         />

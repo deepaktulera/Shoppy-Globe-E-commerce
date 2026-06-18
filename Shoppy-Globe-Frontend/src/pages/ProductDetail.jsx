@@ -36,7 +36,7 @@ const ProductDetail = () => {
     async function fetchProduct() {
       try {
         const data = await getSingleProduct(id);
-        setProduct(data);
+        setProduct(data.product);
       } catch (err) {
         setError("Failed to fetch product details");
       } finally {
@@ -46,6 +46,7 @@ const ProductDetail = () => {
 
     fetchProduct();
   }, [id]);
+  
 
   // show loader untill product comes
   if (loading) {
@@ -58,11 +59,11 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center">
-      <div className="w-[80%] h-full flex flex-col lg:flex-row justify-evenly gap-4 items-center">
+    <div className="w-full h-screen flex flex-col justify-center items-center md:overflow-y-auto">
+      <div className="w-[80%] h-full flex flex-col lg:flex-row justify-evenly object-center gap-4 items-center">
         {/* product image */}
         <img
-          src={product.thumbnail}
+          src={product.image}
           alt={product.title}
           className="md:min-w-120 rounded-2xl"
         />
