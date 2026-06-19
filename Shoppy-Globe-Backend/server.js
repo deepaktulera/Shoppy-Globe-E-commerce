@@ -19,6 +19,12 @@ connectDatabase();
 // middlewares
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  res.on("finish", () => {
+    console.log(`Method: ${req.method}`);
+  });
+  next();
+});
 
 // just checking server is running or not
 app.get("/", (req, res) => {

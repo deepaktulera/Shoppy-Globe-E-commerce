@@ -1,3 +1,6 @@
+import Cart from "../models/Cart.js"; 
+import Product from "../models/Product.js";
+
 // show all cart items of logged in user
 export const showCart = async (req, res) => {
   try {
