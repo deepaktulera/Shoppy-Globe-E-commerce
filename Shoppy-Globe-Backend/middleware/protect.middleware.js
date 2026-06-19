@@ -32,7 +32,7 @@ export function protect(req, res, next) {
     }
 
     // verify token using secret key
-    const decoded = jwt.verify(token, "Hello_World");
+    const decoded = jwt.verify(token, process.env.SECURITY_KEY);
 
     // save user data in request object
     req.user = decoded;

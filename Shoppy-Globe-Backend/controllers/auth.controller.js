@@ -91,9 +91,9 @@ export const loginUser = async (req, res) => {
         id: user._id,
         email: user.email,
       },
-      "Hello_World",
+      process.env.SECURITY_KEY,
       {
-        expiresIn: "7d",
+        expiresIn: "15d",
       },
     );
 
